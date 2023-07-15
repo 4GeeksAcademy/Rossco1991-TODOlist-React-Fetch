@@ -6,8 +6,8 @@ import { Children } from "react/cjs/react.production.min";
 export const Todo = ({ children }) => {
  
   return (
-    <div className="card">
-      <h4 className="title text-center">ToDo</h4>
+    <div className="card w-75">
+      <h1 className="title text-center text-danger">ToDo</h1>
       <div className="accordian">
           {children}
         </div>

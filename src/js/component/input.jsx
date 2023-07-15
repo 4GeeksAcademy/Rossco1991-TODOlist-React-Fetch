@@ -6,12 +6,12 @@ export const Input = () => {
   const [todos, setTodos] = useState([]);
   const [tasks, setTasks] = useState([]);
 
-    useEffect( async () => {
-            const url = "https://assets.breatheco.de/apis/fake/todos/user/rossco1991"
-            const data = await fetch(url, {method: "GET"});
-            const response = await data.json();
-            setTasks(response);
-    },[]);
+  useEffect(async () => {
+    const url = "https://assets.breatheco.de/apis/fake/todos/user/rossco1991";
+    const data = await fetch(url, { method: "GET" });
+    const response = await data.json();
+    setTasks(response);
+  }, []);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -25,7 +25,7 @@ export const Input = () => {
   };
 
   return (
-    <>
+    <div className="main">
       <form className="index" onSubmit={handleSubmit}>
         <input
           className="form-control"
@@ -35,19 +35,22 @@ export const Input = () => {
         ></input>
         <ul className="list-group">
           {todos.map((item, index) => (
-              <li key={index}>{item}
+            <div className="d-flex">
+              <li className="list-group-item" key={index}>
+                {item}{" "}
+              </li>
               <span
                 key={index}
-                  className="btn btn-danger ms-auto"
-                  onClick={() => removeTodo(index)}
-                >
-                  <i className="fa-regular fa-circle-xmark"></i>
-                </span>
-              </li>
+                className="btn btn-danger ms-auto"
+                onClick={() => removeTodo(index)}
+              >
+                <i className="fa-regular fa-circle-xmark fa-sm"></i>
+              </span>
+            </div>
           ))}
         </ul>
       </form>
       <p>{todos.length} Left to do!</p>
-    </>
+    </div>
   );
 };

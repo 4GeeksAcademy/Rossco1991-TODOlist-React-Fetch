@@ -7,11 +7,13 @@ import { Input } from "./input";
 
 //create your first component
 const Home = () => {
-	return (
-		<Todo>
-			<Input/>
-		</Todo>
-	);
+  return (
+    <div className="d-flex justify-content-center">
+      <Todo>
+        <Input />
+      </Todo>
+    </div>
+  );
 };
 
 export default Home;
