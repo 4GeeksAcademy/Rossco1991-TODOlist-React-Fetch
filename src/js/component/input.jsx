@@ -41,7 +41,7 @@ export const Input = () => {
               </li>
               <span
                 key={index}
-                className="btn btn-danger ms-auto"
+                className="btn btn-danger rounded-circle ms-auto"
                 onClick={() => removeTodo(index)}
               >
                 <i className="fa-regular fa-circle-xmark fa-sm"></i>
