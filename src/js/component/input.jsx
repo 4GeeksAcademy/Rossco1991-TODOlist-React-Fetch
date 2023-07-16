@@ -44,7 +44,7 @@ export const Input = () => {
                 className="border-rounded btn-danger ms-auto"
                 onClick={() => removeTodo(index)}
               >
-                <i className="fa-regular fa-circle-xmark fa-sm"></i>
+                <i className="fa-regular fa-circle-xmark fa-xl"></i>
               </span>
             </div>
           ))}
