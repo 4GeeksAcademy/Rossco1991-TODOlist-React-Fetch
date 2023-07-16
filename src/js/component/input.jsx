@@ -25,7 +25,7 @@ export const Input = () => {
   };
 
   return (
-    <div className="main">
+    <div className="main px-2">
       <form className="index" onSubmit={handleSubmit}>
         <input
           className="form-control"
@@ -35,13 +35,13 @@ export const Input = () => {
         ></input>
         <ul className="list-group">
           {todos.map((item, index) => (
-            <div className="d-flex">
-              <li className="list-group-item" key={index}>
-                {item}{" "}
+            <div className="d-flex mt-2">
+              <li className="list-group-item border-0" key={index}>
+                {item}
               </li>
               <span
                 key={index}
-                className="btn btn-danger ms-auto"
+                className="border-rounded btn-danger ms-auto"
                 onClick={() => removeTodo(index)}
               >
                 <i className="fa-regular fa-circle-xmark fa-sm"></i>
@@ -50,7 +50,7 @@ export const Input = () => {
           ))}
         </ul>
       </form>
-      <p>{todos.length} Left to do!</p>
+      <p className="px-3">{todos.length} Left to do!</p>
     </div>
   );
 };
