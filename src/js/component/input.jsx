@@ -4,14 +4,25 @@ import { useState } from "react";
 export const Input = () => {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
-  const [tasks, setTasks] = useState([]);
-
+  const [formValue, setFormValue] = useState({});
+  
   useEffect(async () => {
-    const url = "https://assets.breatheco.de/apis/fake/todos/user/rossco1991";
+    const url = "https://fake-todo-list-52f9a4ed80ce.herokuapp.com/todos/user/rossco1991";
     const data = await fetch(url, { method: "GET" });
     const response = await data.json();
-    setTasks(response);
+    setTodos(response);
   }, []);
+
+  useEffect(async () => {
+    const url = "https://fake-todo-list-52f9a4ed80ce.herokuapp.com/todos/user/rossco1991";
+    const data = await fetch(url, { 
+      method: "PUT", 
+      body:JSON.stringify(todos), 
+      headers:{"Content-type":"application/json"}});
+    
+
+  }, [todos]);
+
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
