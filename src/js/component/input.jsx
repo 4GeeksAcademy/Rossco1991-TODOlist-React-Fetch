@@ -7,27 +7,29 @@ export const Input = () => {
   const [formValue, setFormValue] = useState({});
   
   useEffect(async () => {
-    const url = "https://fake-todo-list-52f9a4ed80ce.herokuapp.com/todos/user/rossco1991";
+    const url = "https://fake-todo-list-52f9a4ed80ce.herokuapp.com/todos/user/rossco1991/";
     const data = await fetch(url, { method: "GET" });
     const response = await data.json();
     setTodos(response);
   }, []);
 
   useEffect(async () => {
-    const url = "https://fake-todo-list-52f9a4ed80ce.herokuapp.com/todos/user/rossco1991";
+    const url = "https://fake-todo-list-52f9a4ed80ce.herokuapp.com/todos/user/rossco1991/";
     const data = await fetch(url, { 
       method: "PUT", 
       body:JSON.stringify(todos), 
       headers:{"Content-type":"application/json"}});
-    
+    const response = data.json()
+    response 
 
   }, [todos]);
 
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    const newTodo = [...todos, input];
+    const newTodo = [...todos, input, formValue];
     setTodos(newTodo);
+    setFormValue({label: ev.target.value, done: false });
     setInput("");
   };
 
@@ -37,7 +39,7 @@ export const Input = () => {
 
   return (
     <div className="main px-2">
-      <form className="index" onSubmit={handleSubmit}>
+      <div className="index" onSubmit={handleSubmit}>
         <input
           className="form-control"
           type="text"
@@ -60,7 +62,7 @@ export const Input = () => {
             </div>
           ))}
         </ul>
-      </form>
+      </div>
       <p className="px-3">{todos.length} Left to do!</p>
     </div>
   );
