@@ -4,32 +4,27 @@ import { useState } from "react";
 export const Input = () => {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
-  const [formValue, setFormValue] = useState({});
   
   useEffect(async () => {
-    const url = "https://fake-todo-list-52f9a4ed80ce.herokuapp.com/todos/user/rossco1991/";
+    const url = "https://playground.4geeks.com/apis/fake/todos/user/rossco1991";
     const data = await fetch(url, { method: "GET" });
     const response = await data.json();
     setTodos(response);
   }, []);
 
   useEffect(async () => {
-    const url = "https://fake-todo-list-52f9a4ed80ce.herokuapp.com/todos/user/rossco1991/";
-    const data = await fetch(url, { 
+    const url = "https://playground.4geeks.com/apis/fake/todos/user/rossco1991";
+    await fetch(url, { 
       method: "PUT", 
       body:JSON.stringify(todos), 
       headers:{"Content-type":"application/json"}});
-    const response = data.json()
-    response 
-
   }, [todos]);
 
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    const newTodo = [...todos, input, formValue];
+    const newTodo = [...todos, {label:input}];
     setTodos(newTodo);
-    setFormValue({label: ev.target.value, done: false });
     setInput("");
   };
 
@@ -39,7 +34,7 @@ export const Input = () => {
 
   return (
     <div className="main px-2">
-      <div className="index" onSubmit={handleSubmit}>
+      <form className="index" onSubmit={handleSubmit}>
         <input
           className="form-control"
           type="text"
@@ -48,9 +43,10 @@ export const Input = () => {
         ></input>
         <ul className="list-group">
           {todos.map((item, index) => (
+            item.hidden ? '':
             <div className="d-flex mt-2">
               <li className="list-group-item border-0" key={index}>
-                {item}
+                {item.label}
               </li>
               <span
                 key={index}
@@ -62,8 +58,8 @@ export const Input = () => {
             </div>
           ))}
         </ul>
-      </div>
-      <p className="px-3">{todos.length} Left to do!</p>
+      </form>
+      <p className="px-3">{todos.length-1} Left to do!</p>
     </div>
   );
 };
